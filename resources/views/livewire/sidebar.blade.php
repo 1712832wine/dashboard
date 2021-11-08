@@ -5,8 +5,8 @@
         </a>
     </div>
     <ul class="list-unstyled components">
-        <p>Dummy Heading</p>
-        <li class="active">
+        <a href="{{ route('users') }}">User</a>
+        <li class=" active">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
