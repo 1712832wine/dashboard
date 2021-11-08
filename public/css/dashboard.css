@@ -72,6 +72,14 @@ a:focus {
     height: 70px;
     padding: 20px;
     background: #6d7fcc;
+    display: flex;
+    align-items: center;
+}
+
+span.title {
+    margin-left: 4px;
+    font-size: 23px;
+    font-weight: 500;
 }
 
 #sidebar ul.components {

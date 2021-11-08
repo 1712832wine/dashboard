@@ -21,6 +21,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/mystyle.css">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     @livewireStyles

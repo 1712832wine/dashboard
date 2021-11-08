@@ -1,6 +1,8 @@
 <nav id="sidebar">
     <div class="sidebar-header">
-        <h3>Bootstrap Sidebar</h3>
+        <a href="{{ route('dashboard') }}">
+            <span class="title font-sans"><b>NH</b> Dashboard</span>
+        </a>
     </div>
     <ul class="list-unstyled components">
         <p>Dummy Heading</p>
