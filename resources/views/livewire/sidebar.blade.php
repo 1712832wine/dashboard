@@ -5,18 +5,18 @@
         </a>
     </div>
     <ul class="list-unstyled components">
-        <a href="{{ route('users') }}">User</a>
         <li class=" active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
+                class="dropdown-toggle">Authentication</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="#">Home 1</a>
+                    <a href="{{ route('users') }}">User</a>
                 </li>
                 <li>
-                    <a href="#">Home 2</a>
+                    <a href="#">Role</a>
                 </li>
                 <li>
-                    <a href="#">Home 3</a>
+                    <a href="#">Permission</a>
                 </li>
             </ul>
         </li>
