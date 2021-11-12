@@ -1,4 +1,5 @@
 <form wire:submit.prevent="submit">
+    @csrf
     <x-jet-dialog-modal wire:model="isOpen">
         <x-slot name="title">
             {{ __('User form') }}
@@ -8,21 +9,21 @@
                 <div>
                     <x-jet-label for="name" value="{{ __('Name') }}" />
                     <x-jet-input id="name" wire:model.defer="user.name" class="block mt-1 w-full" type="text" name="name"
-                        :value="old('name')" autofocus />
+                        :value="old('name')" autocomplete />
                     <x-jet-input-error for="user.name" class="mt-2" />
                 </div>
 
                 <div class="mt-4">
                     <x-jet-label for="email" value="{{ __('Email') }}" />
                     <x-jet-input id="email" wire:model.defer="user.email" class="block mt-1 w-full" type="email"
-                        name="email" :value="old('email')" />
+                        name="email" :value="old('email')" autocomplete />
                     <x-jet-input-error for="user.email" class="mt-2" />
                 </div>
 
                 <div class="mt-4">
                     <x-jet-label for="password" value="{{ __('Password') }}" />
                     <x-jet-input id="password" wire:model.defer="password" class="block mt-1 w-full" type="text"
-                        name="password" />
+                        name="password" autocomplete />
                     <x-jet-input-error for="password" class="mt-2" />
                 </div>
 
