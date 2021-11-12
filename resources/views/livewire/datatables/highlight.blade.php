@@ -1,1 +1,1 @@
-<span class="bg-yellow-100">{{ $slot }}</span>
+<span class="bg-blue-100">{{ $slot }}</span>

@@ -39,7 +39,6 @@ class UsersTable extends LivewireDatatable
 
             Column::name('email')
                 ->label('Email')
-                ->editable()
                 ->searchable()
                 ->filterable(),
 
