@@ -9,7 +9,7 @@ class UsersComponent extends Component
     public $user_id, $isOpen = false;
     protected $listeners = ['openForm'];
 
-    public function openForm($id){
+    public function openForm($id = null){
         $this->user_id = $id;
         $this->isOpen = true;
     }
