@@ -46,10 +46,8 @@ class UsersTable extends LivewireDatatable
                 ->label('Created at'),
 
             Column::callback(['id'], function ($id) {
-                return view('components.edit-button', ['id'=>$id]);
-            })->label('Edit'),  
-
-            Column::delete()->label('Delete'),
+                return view('components.actions-button', ['id'=>$id]);
+            })->label('Action'),  
 
         ];
     }
