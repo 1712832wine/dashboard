@@ -97,7 +97,7 @@
                                     @unless($column['hidden'])
                                         <div
                                             class=" table-cell h-12 w-32 py-4 flex justify-center overflow-hidden align-top px-6 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider focus:outline-none">
-                                            <div class="px-3 py-1 rounded @if (count($selected)) bg-orange-400 @else bg-gray-200 @endif text-white text-center">
+                                            <div class="px-3 py-1 rounded @if (count($selected)) bg-blue-500 @else bg-gray-200 @endif text-white text-center">
                                                 {{ count($selected) }}
                                             </div>
                                         </div>
@@ -204,7 +204,8 @@
                             </div>
 
                             <div class="flex justify-end text-gray-600">
-                                {{ __('Results') }} {{ $this->results->firstItem() }} - {{ $this->results->lastItem() }}
+                                {{ __('Results') }} {{ $this->results->firstItem() }} -
+                                {{ $this->results->lastItem() }}
                                 {{ __('of') }}
                                 {{ $this->results->total() }}
                             </div>
