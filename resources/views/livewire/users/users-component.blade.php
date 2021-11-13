@@ -5,5 +5,4 @@
     </div>
     @livewire('users.users-table')
     @include('livewire.users.users-form')
-    @livewire('confirm-alert')
 </div>

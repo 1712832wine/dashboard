@@ -13,7 +13,7 @@ class UsersComponent extends Component
     public User $user;
     public $password = '';
     public $password_confirmation = '';
-    protected $listeners = ['openForm'];
+    protected $listeners = ['openForm', 'confirmDelete', 'delete'];
 
     // -----------------------------------------
     // Validate
@@ -29,7 +29,8 @@ class UsersComponent extends Component
     // End validate
     // -----------------------------------------
 
-    
+    // -----------------------------------------
+    // Form processing
     public function submit(){
         $this->validate();
         $this->user->password = Hash::make($this->password);
@@ -50,11 +51,40 @@ class UsersComponent extends Component
         $this->password_confirmation = '';
     }
 
-
     public function closeForm(){
         $this->resetData();
         $this->isOpen = false;
     }
+    // End form process
+    // ----------------------------------------
+
+    // ----------------------------------------
+    // Confirm Alert
+    
+    // End confirm alert
+    // -------------------------------------------
+
+    // ----------------------------------------
+    // Confirm Alert
+    public function confirmDelete($id){
+        // return dd("fdd");
+        $this->emit('swal:confirm', [
+            'type'        => 'warning',
+            'title'       => 'Are you sure?',
+            'text'        => "You won't be able to revert this!",
+            'confirmText' => 'Yes, delete!',
+            'method'      => 'delete',
+            'params'      => $id,
+            'callback'    => '',
+        ]);
+    }
+
+    public function delete($id){
+        User::findOrFail($id)->delete();
+        return redirect()->route('users')->with('success', 'User Deleted Successfully!');
+    }
+    // End confirm alert
+    // -------------------------------------------
 
     public function render()
     {

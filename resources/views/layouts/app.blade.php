@@ -13,13 +13,13 @@
     {{-- CORE --}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     {{-- CSS --}}
+    {{-- Bootstrap --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <link rel="stylesheet"
+    <link rel="stylesheet" {{-- Line awesome --}}
         href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css"
         integrity="sha512-vebUliqxrVkBy3gucMhClmyQP9On/HAWQdKDXRaAlb/FKuTbxkjPKUyqVOxAcGwFDka79eTF+YXwfke1h3/wfg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.css" />
     <!-- Styles -->
     <link rel="stylesheet" href="/css/dashboard.css">
     <link rel="stylesheet" href="/css/mystyle.css">
@@ -45,24 +45,17 @@
         @include('sweetalert::alert')
     </div>
     {{-- Script --}}
+    {{-- Bootstrap --}}
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
     </script>
+    {{-- Sweet Alert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     {{-- Script --}}
-
     <script>
-        const SwalModal = (icon, title, html) => {
-            Swal.fire({
-                icon,
-                title,
-                html
-            })
-        }
-
         const SwalConfirm = (icon, title, html, confirmButtonText, method, params, callback) => {
             Swal.fire({
                 icon,
@@ -84,48 +77,24 @@
             })
         }
 
-        const SwalAlert = (icon, title, timeout = 7000) => {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: timeout,
-                onOpen: toast => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-
-            Toast.fire({
-                icon,
-                title
-            })
-        }
-
+        // Confirm alert
         document.addEventListener('DOMContentLoaded', () => {
-            this.livewire.on('swal:modal', data => {
-                SwalModal(data.icon, data.title, data.text)
-            })
 
             this.livewire.on('swal:confirm', data => {
                 SwalConfirm(data.icon, data.title, data.text, data.confirmText, data.method, data.params,
                     data.callback)
             })
 
-            this.livewire.on('swal:alert', data => {
-                SwalAlert(data.icon, data.title, data.timeout)
-            })
         })
     </script>
+
     <script>
         $(document).ready(function() {
-
             $('#sidebarCollapse').on('click', function() {
                 // open or close navbar
                 $('#sidebar').toggleClass('active');
                 $('#content').toggleClass('active');
             });
-
         });
     </script>
 
