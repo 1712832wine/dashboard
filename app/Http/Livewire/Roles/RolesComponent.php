@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Http\Livewire\Users;
+namespace App\Http\Livewire\Roles;
 
-use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Livewire\Component;
-use Illuminate\Support\Facades\Hash;
-use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Permission\Models\Permission;
 
-class UsersComponent extends Component
+class RolesComponent extends Component
 {
-    public $user_id, $isOpen = false;
-    public User $user;
-    public $password = '';
-    public $password_confirmation = '';
+    public $role_id, $isOpen = false;
+    public Role $role;
+    public $permissions;
     protected $listeners = ['openForm', 'confirmDelete', 'delete'];
 
     // ----------------------------------------
@@ -20,10 +18,7 @@ class UsersComponent extends Component
     protected function rules()
     {
         return [
-            'user.name' => ['required', 'string', 'max:255'],
-            'user.email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$this->user->id],
-            'password' => ['required', 'string','confirmed'],
-            'password_confirmation' => []
+            'role.name' => ['required', 'string', 'max:255'],
         ];
     }
     // End validate
@@ -33,22 +28,20 @@ class UsersComponent extends Component
     // Form processing
     public function submit(){
         $this->validate();
-        $this->user->password = Hash::make($this->password);
-        $this->user->save();
-        return redirect()->route('users')->with('success', 'User Created Successfully!');
+        return dd($this->permissions);
+        $this->role->save();
+        return redirect()->route('roles')->with('success', 'Role Created Successfully!');
     }
 
     public function openForm($id = null){
-        $this->user_id = $id;
-        $this->user = User::firstOrNew(['id' => $id]);
+        $this->role_id = $id;
+        $this->role = Role::firstOrNew(['id' => $id]);
         $this->isOpen = true;
     }
 
     public function resetData(){
-        $this->user_id = null;
-        $this->user = null;
-        $this->password = '';
-        $this->password_confirmation = '';
+        $this->role_id = null;
+        $this->role = null;
     }
 
     public function closeForm(){
@@ -67,7 +60,6 @@ class UsersComponent extends Component
     // ----------------------------------------
     // Confirm Alert
     public function confirmDelete($id){
-        // return dd("fdd");
         $this->emit('swal:confirm', [
             'type'        => 'warning',
             'title'       => 'Are you sure?',
@@ -80,14 +72,15 @@ class UsersComponent extends Component
     }
 
     public function delete($id){
-        User::findOrFail($id)->delete();
-        return redirect()->route('users')->with('success', 'User Deleted Successfully!');
+        Role::findOrFail($id)->delete();
+        return redirect()->route('roles')->with('success', 'Role Deleted Successfully!');
     }
     // End confirm alert
     // ----------------------------------------
 
     public function render()
     {
-        return view('livewire.users.users-component');
+        $list_permissions = Permission::all()->pluck('name');
+        return view('livewire.roles.roles-component',['list_permissions' => $list_permissions]);
     }
 }
