@@ -1,6 +1,6 @@
-<div class="px-3 pb-3">
-    <div class="d-flex justify-content-between mb-2">
-        <h2>User</h2>
+<div class="p-3 w-50">
+    <div class="flex justify-between mb-2">
+        <span class="text-3xl">User</span>
         <x-jet-button wire:click="openForm()">Add new user</x-jet-button>
     </div>
     @livewire('users.users-table')

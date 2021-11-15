@@ -35,7 +35,7 @@
     <div class="md:flex flex-col md:flex-row md:min-h-screen w-full">
         @livewire('sidebar')
         <!-- Page Content -->
-        <div>
+        <div class="flex-grow overflow-hidden">
             @livewire('navigation-menu')
             {{ $slot }}
         </div>

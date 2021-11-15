@@ -224,15 +224,16 @@
     </svg><!-- <i class="fas fa-align-left"></i> -->
     <span>Toggle Sidebar</span>
 </button> --}}
-<nav class="flex-shrink-0 px-8 py-4 flex flex-row items-center justify-between bg-white mb-4 shadow-md">
+<nav class="flex-shrink-0 px-3 py-4 flex flex-row items-center justify-between bg-white mb-4 shadow-md">
 
     <x-jet-button>{{ __('Toggle Sidebar') }}</x-jet-button>
-    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+
+    <button class="ml-3 relative border-black ring-2 border-opacity-50 rounded-lg" type="button" data-toggle="collapse"
         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
         aria-label="Toggle navigation">
         <i class="fas fa-align-justify"></i>
     </button>
-    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse d-flex justify-content-end border-black" id="navbarSupportedContent">
         <div class="hidden sm:flex sm:items-center sm:ml-6">
             <!-- Teams Dropdown -->
             @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
@@ -301,7 +302,7 @@
                         @else
                             <span class="inline-flex rounded-md">
                                 <button type="button"
-                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
+                                    class="inline-flex items-center px-3 py-2 border-2 border-black text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
                                     {{ Auth::user()->name }}
 
                                     <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"

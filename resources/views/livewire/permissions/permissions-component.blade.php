@@ -1,6 +1,6 @@
-<div class="px-3 pb-3">
-    <div class="d-flex justify-content-between mb-2">
-        <h2>Permissions</h2>
+<div class="p-3">
+    <div class="flex justify-between mb-2">
+        <span class="text-3xl">Permission</span>
         <x-jet-button wire:click="openForm()">Add new permissions</x-jet-button>
     </div>
     @livewire('permissions.permissions-table')
