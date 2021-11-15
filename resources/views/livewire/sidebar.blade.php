@@ -1,22 +1,3 @@
-{{-- <nav id="sidebar">
-    <div class="sidebar-header">
-        <a href="{{ route('dashboard') }}">
-            <span class="title font-sans"><b>NH</b> Dashboard</span>
-        </a>
-    </div>
-    <ul class="list-unstyled components">
-        <li class=" active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
-                class="dropdown-toggle">Authentication</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <x-sidebar-item route="users">{{ __('Users') }}</x-sidebar-item>
-                <x-sidebar-item route="roles">{{ __('Roles') }}</x-sidebar-item>
-                <x-sidebar-item route="permissions">{{ __('Permissions') }}</x-sidebar-item>
-            </ul>
-        </li>
-        <x-sidebar-dropdown />
-    </ul>
-</nav> --}}
 <div @click.away="open = false"
     class="flex flex-col w-full md:w-64 text-gray-700 bg-white shadow-md z-20 dark-mode:text-gray-200 dark-mode:bg-gray-800 flex-shrink-0"
     x-data="{ open: false }">
