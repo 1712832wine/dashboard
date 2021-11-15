@@ -41,8 +41,10 @@ class UsersTable extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
-            DateColumn::name('created_at')
-                ->label('Created at'),
+            Column::callback(['id', 'name'], function ($id, $name) {
+                $user = User::find($id);
+                return $user->roles->pluck('name');
+            })->label('Role'),   
 
             Column::callback(['id'], function ($id) {
                 return view('components.actions-button', ['id'=>$id]);

@@ -36,6 +36,7 @@ class RolesComponent extends Component
     public function openForm($id = null){
         $this->role_id = $id;
         $this->role = Role::firstOrNew(['id' => $id]);
+        $this->permissions = $this->role->permissions->pluck('name');
         $this->isOpen = true;
     }
 

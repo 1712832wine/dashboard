@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Users;
 
 use App\Models\User;
+use Spatie\Permission\Models\Permission;
 use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -67,7 +68,6 @@ class UsersComponent extends Component
     // ----------------------------------------
     // Confirm Alert
     public function confirmDelete($id){
-        // return dd("fdd");
         $this->emit('swal:confirm', [
             'type'        => 'warning',
             'title'       => 'Are you sure?',
@@ -75,7 +75,7 @@ class UsersComponent extends Component
             'confirmText' => 'Yes, delete!',
             'method'      => 'delete',
             'params'      => $id,
-            'callback'    => '',
+            'callback'    => ''
         ]);
     }
 
@@ -88,6 +88,7 @@ class UsersComponent extends Component
 
     public function render()
     {
-        return view('livewire.users.users-component');
+        $list_permissions = Permission::all()->pluck('name');
+        return view('livewire.users.users-component',[ 'list_permissions' => $list_permissions]);
     }
 }

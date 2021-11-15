@@ -40,7 +40,6 @@ class RolesTable extends LivewireDatatable
                     $role = Role::find($id);
                     return $role->permissions->pluck('name');
                 })->label('Permissions'),  
-            // Column::name('roles.permissions')->label('Permissions'),
 
             Column::callback(['id','name'], function ($id, $name) {
                 return view('components.actions-button', ['id'=>$id]);

@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full md:w-64 text-gray-700 bg-white shadow-md z-20 dark-mode:text-gray-200 dark-mode:bg-gray-800 flex-shrink-0"
+<div class="flex flex-col w-full md:w-64 text-gray-700 bg-white shadow-md z-20 dark-mode:text-gray-200 dark-mode:bg-gray-800 flex-shrink-0 transition duration-200"
     x-show="open">
     <div class="flex-shrink-0 px-8 py-4 flex flex-row items-center justify-between">
         <a href="#"
@@ -17,11 +17,6 @@
     </div>
     <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto hidden">
         <x-sidebar-dropdown route="authentication">
-            <x-sidebar-item route='users'>{{ __('User') }}</x-sidebar-item>
-            <x-sidebar-item route='roles'>{{ __('Role') }}</x-sidebar-item>
-            <x-sidebar-item route='permissions'>{{ __('Permission') }}</x-sidebar-item>
-        </x-sidebar-dropdown>
-        <x-sidebar-dropdown route="Authen2">
             <x-sidebar-item route='users'>{{ __('User') }}</x-sidebar-item>
             <x-sidebar-item route='roles'>{{ __('Role') }}</x-sidebar-item>
             <x-sidebar-item route='permissions'>{{ __('Permission') }}</x-sidebar-item>

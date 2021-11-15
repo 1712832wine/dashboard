@@ -35,6 +35,34 @@
                 </div>
 
                 <div class="mt-4">
+                    <x-jet-label value="{{ __('Permission') }}" />
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        @foreach ($list_permissions as $permission)
+                            <div class="">
+                                <x-jet-checkbox :id="$permission" wire:model.defer="permissions" :value="$permission" />
+                                <label class="text-sm text-gray-600"
+                                    for="{{ $permission }}">{{ $permission }}</label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <x-jet-input-error for="permissions" class="mt-2" />
+                </div>
+
+                <div class="mt-4">
+                    <x-jet-label value="{{ __('Permission') }}" />
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        @foreach ($list_permissions as $permission)
+                            <div class="">
+                                <x-jet-checkbox :id="$permission" wire:model.defer="permissions" :value="$permission" />
+                                <label class="text-sm text-gray-600"
+                                    for="{{ $permission }}">{{ $permission }}</label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <x-jet-input-error for="permissions" class="mt-2" />
+                </div>
+
+                <div class="mt-4">
                     <x-jet-validation-errors />
                 </div>
             </div>
