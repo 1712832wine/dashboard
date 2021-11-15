@@ -13,17 +13,7 @@
     {{-- CORE --}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     {{-- CSS --}}
-    {{-- Bootstrap --}}
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <link rel="stylesheet" Line awesome --}}
-    {{-- href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css"
-        integrity="sha512-vebUliqxrVkBy3gucMhClmyQP9On/HAWQdKDXRaAlb/FKuTbxkjPKUyqVOxAcGwFDka79eTF+YXwfke1h3/wfg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
-    <!-- Styles -->
     <link rel="stylesheet" href="/css/dashboard.css">
-    <link rel="stylesheet" href="/css/mystyle.css">
-
 
     @livewireStyles
 
@@ -42,13 +32,6 @@
         @include('sweetalert::alert')
     </div>
     {{-- Script --}}
-    {{-- Bootstrap --}}
-    {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
-    </script> --}}
     {{-- Sweet Alert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     {{-- Script --}}
@@ -84,16 +67,6 @@
 
         })
     </script>
-
-    {{-- <script>
-        $(document).ready(function() {
-            $('#sidebarCollapse').on('click', function() {
-                // open or close navbar
-                $('#sidebar').toggleClass('active');
-                $('#content').toggleClass('active');
-            });
-        });
-    </script> --}}
 
     @stack('modals')
 
