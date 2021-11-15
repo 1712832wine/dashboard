@@ -21,7 +21,7 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased" x-data="{ open: true }">
     <div class="md:flex flex-col md:flex-row md:min-h-screen w-full">
         @livewire('sidebar')
         <!-- Page Content -->

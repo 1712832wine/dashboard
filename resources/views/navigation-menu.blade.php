@@ -226,7 +226,7 @@
 </button> --}}
 <nav class="flex-shrink-0 px-3 py-4 flex flex-row items-center justify-between bg-white mb-4 shadow-md">
 
-    <x-jet-button>{{ __('Toggle Sidebar') }}</x-jet-button>
+    <x-jet-button @click="open = !open">{{ __('Toggle Sidebar') }}</x-jet-button>
 
     <button class="ml-3 relative border-black ring-2 border-opacity-50 rounded-lg" type="button" data-toggle="collapse"
         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
