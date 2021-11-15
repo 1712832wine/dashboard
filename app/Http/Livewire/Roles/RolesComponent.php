@@ -54,12 +54,6 @@ class RolesComponent extends Component
 
     // ----------------------------------------
     // Confirm Alert
-    
-    // End confirm alert
-    // ----------------------------------------
-
-    // ----------------------------------------
-    // Confirm Alert
     public function confirmDelete($id){
         $this->emit('swal:confirm', [
             'type'        => 'warning',

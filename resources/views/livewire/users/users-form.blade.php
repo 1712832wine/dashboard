@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <x-jet-label value="{{ __('Permission') }}" />
+                    <x-jet-label value="{{ __('Role') }}" />
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         @foreach ($list_permissions as $permission)
                             <div class="">

@@ -29,8 +29,6 @@ class PermissionsTable extends LivewireDatatable
                 ->filterable()
                 ->sortBy('id'),
 
-            // Column::checkbox(),
-
             Column::name('name')
                 ->label('Name')
                 ->searchable()
