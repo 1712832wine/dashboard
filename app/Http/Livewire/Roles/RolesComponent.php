@@ -28,7 +28,7 @@ class RolesComponent extends Component
     // Form processing
     public function submit(){
         $this->validate();
-        return dd($this->permissions);
+        $this->role->syncPermissions($this->permissions);
         $this->role->save();
         return redirect()->route('roles')->with('success', 'Role Created Successfully!');
     }

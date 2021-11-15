@@ -14,11 +14,12 @@
                 </div>
 
                 <div class="mt-4">
-                    <x-jet-label  value="{{ __('Permission') }}" />
+                    <x-jet-label value="{{ __('Permission') }}" />
                     <div class="flex items-center">
                         @foreach ($list_permissions as $permission)
-                            <x-jet-checkbox wire:model.defer="permissions" :value="$permission"/>
-                            <span class="ml-2 text-sm text-gray-600">{{ $permission }}</span>
+                            <x-jet-checkbox :id="$permission" wire:model.defer="permissions" :value="$permission" />
+                            <label class="ml-2 text-sm text-gray-600"
+                                for="{{ $permission }}">{{ $permission }}</label>
                         @endforeach
                     </div>
                     <x-jet-input-error for="permissions" class="mt-2" />

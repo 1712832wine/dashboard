@@ -37,6 +37,12 @@ class RolesTable extends LivewireDatatable
                 ->filterable(),
 
             Column::callback(['id'], function ($id) {
+                    $role = Role::find($id);
+                    return $role->permissions->pluck('name');
+                })->label('Permissions'),  
+            // Column::name('roles.permissions')->label('Permissions'),
+
+            Column::callback(['id','name'], function ($id, $name) {
                 return view('components.actions-button', ['id'=>$id]);
             })->label('Action'),  
 
