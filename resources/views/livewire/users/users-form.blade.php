@@ -6,33 +6,41 @@
         </x-slot>
         <x-slot name="content">
             <div>
-                <div>
-                    <x-jet-label for="name" value="{{ __('Name') }}" />
-                    <x-jet-input id="name" wire:model.defer="user.name" class="block mt-1 w-full" type="text" name="name"
-                        :value="old('name')" autocomplete />
-                    <x-jet-input-error for="user.name" class="mt-2" />
-                </div>
+                @if (!in_array('name', $disabled))
+                    <div>
+                        <x-jet-label for="name" value="{{ __('Name') }}" />
+                        <x-jet-input id="name" wire:model.defer="user.name" class="block mt-1 w-full" type="text"
+                            name="name" :value="old('name')" autocomplete />
+                        <x-jet-input-error for="user.name" class="mt-2" />
+                    </div>
+                @endif
 
-                <div class="mt-4">
-                    <x-jet-label for="email" value="{{ __('Email') }}" />
-                    <x-jet-input id="email" wire:model.defer="user.email" class="block mt-1 w-full" type="email"
-                        name="email" :value="old('email')" autocomplete />
-                    <x-jet-input-error for="user.email" class="mt-2" />
-                </div>
+                @if (!in_array('email', $disabled))
+                    <div class="mt-4">
+                        <x-jet-label for="email" value="{{ __('Email') }}" />
+                        <x-jet-input id="email" wire:model.defer="user.email" class="block mt-1 w-full" type="email"
+                            name="email" :value="old('email')" autocomplete />
+                        <x-jet-input-error for="user.email" class="mt-2" />
+                    </div>
+                @endif
 
-                <div class="mt-4">
-                    <x-jet-label for="password" value="{{ __('Password') }}" />
-                    <x-jet-input id="password" wire:model.defer="password" class="block mt-1 w-full" type="text"
-                        name="password" autocomplete />
-                    <x-jet-input-error for="password" class="mt-2" />
-                </div>
+                @if (!in_array('password', $disabled))
+                    <div class="mt-4">
+                        <x-jet-label for="password" value="{{ __('Password') }}" />
+                        <x-jet-input id="password" wire:model.defer="password" class="block mt-1 w-full" type="text"
+                            name="password" autocomplete />
+                        <x-jet-input-error for="password" class="mt-2" />
+                    </div>
+                @endif
 
-                <div class="mt-4">
-                    <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                    <x-jet-input id="password_confirmation" wire:model.defer="password_confirmation"
-                        class="block mt-1 w-full" type="password" name="password_confirmation" />
-                    <x-jet-input-error for="password_confirmation" class="mt-2" />
-                </div>
+                @if (!in_array('password_confirmation', $disabled))
+                    <div class="mt-4">
+                        <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                        <x-jet-input id="password_confirmation" wire:model.defer="password_confirmation"
+                            class="block mt-1 w-full" type="password" name="password_confirmation" />
+                        <x-jet-input-error for="password_confirmation" class="mt-2" />
+                    </div>
+                @endif
 
                 <div class="mt-4">
                     <x-jet-label value="{{ __('Role') }}" />
@@ -45,22 +53,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <x-jet-input-error for="permissions" class="mt-2" />
-                </div>
-
-                <div class="mt-4">
-                    <x-jet-label value="{{ __('Permission') }}" />
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        @foreach ($list_permissions as $permission)
-                            <div class="">
-                                {{-- disabled="{{ in_array($permission, $permissions_in_roles) }}" --}}
-                                <x-jet-checkbox :id="$permission" wire:model.defer="permissions" :value="$permission" />
-                                <label class="text-sm text-gray-600"
-                                    for="{{ $permission }}">{{ $permission }}</label>
-                            </div>
-                        @endforeach
-                    </div>
-                    <x-jet-input-error for="permissions" class="mt-2" />
+                    <x-jet-input-error for="roles" class="mt-2" />
                 </div>
 
                 <div class="mt-4">
