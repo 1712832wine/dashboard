@@ -17,6 +17,7 @@ class PermissionsComponent extends Component
     {
         return [
             'permission.name' => ['required', 'string', 'max:255'],
+            'permission.guard_name' => []
         ];
     }
     // End validate
@@ -27,12 +28,12 @@ class PermissionsComponent extends Component
     public function submit(){
         $this->validate();
         $this->permission->save();
-        return redirect()->route('permissions')->with('success', 'Permissions Created Successfully!');
+        return redirect()->route('permissions')->with('success', 'Permission Created Successfully!');
     }
 
     public function openForm($id = null){
         $this->permission_id = $id;
-        $this->permission = Permission::firstOrNew(['id' => $id]);
+        $this->permission = Permission::firstOrNew(['id' => $id,'guard_name' => 'web']);
         $this->isOpen = true;
     }
 
@@ -54,7 +55,7 @@ class PermissionsComponent extends Component
         $this->emit('swal:confirm', [
             'type'        => 'warning',
             'title'       => 'Are you sure?',
-            'text'        => "You won't be able to revert this!",
+            'text'        => "You will not be able to revert this!",
             'confirmText' => 'Yes, delete!',
             'method'      => 'delete',
             'params'      => $id,

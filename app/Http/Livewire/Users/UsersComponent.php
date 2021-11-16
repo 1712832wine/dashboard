@@ -85,7 +85,7 @@ class UsersComponent extends Component
         $this->emit('swal:confirm', [
             'type'        => 'warning',
             'title'       => 'Are you sure?',
-            'text'        => "You won't be able to revert this!",
+            'text'        => "You will not be able to revert this!",
             'confirmText' => 'Yes, delete!',
             'method'      => 'delete',
             'params'      => $id,

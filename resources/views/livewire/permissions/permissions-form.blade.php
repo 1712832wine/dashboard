@@ -8,9 +8,16 @@
             <div>
                 <div>
                     <x-jet-label for="name" value="{{ __('Name') }}" />
-                    <x-jet-input id="name" wire:model.defer="permission.name" class="block mt-1 w-full" type="text" name="name"
-                        :value="old('name')" autocomplete />
+                    <x-jet-input id="name" wire:model.defer="permission.name" class="block mt-1 w-full" type="text"
+                        name="name" :value="old('name')" autocomplete />
                     <x-jet-input-error for="permission.name" class="mt-2" />
+                </div>
+
+                <div class="mt-4">
+                    <x-jet-label for="guard_name" value="{{ __('Guard name') }}" />
+                    <x-jet-input id="guard_name" wire:model.defer="permission.guard_name" class="block mt-1 w-full"
+                        type="text" name="guard_name" autocomplete disabled />
+                    <x-jet-input-error for="permission.guard_name" class="mt-2" />
                 </div>
 
                 <div class="mt-4">

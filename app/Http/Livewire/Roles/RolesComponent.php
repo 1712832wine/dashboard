@@ -19,6 +19,7 @@ class RolesComponent extends Component
     {
         return [
             'role.name' => ['required', 'string', 'max:255'],
+            'role.guard_name' => []
         ];
     }
     // End validate
@@ -35,7 +36,7 @@ class RolesComponent extends Component
 
     public function openForm($id = null){
         $this->role_id = $id;
-        $this->role = Role::firstOrNew(['id' => $id]);
+        $this->role = Role::firstOrNew(['id' => $id,'guard_name' => 'web']);
         // Get all permissions of this->role;
         $this->permissions = $this->role->permissions->pluck('name');
         $this->isOpen = true;
@@ -55,11 +56,11 @@ class RolesComponent extends Component
 
     // ----------------------------------------
     // Confirm Alert
-    public function confirmDelete($id){
+    public function confirmDelete($id) {
         $this->emit('swal:confirm', [
             'type'        => 'warning',
             'title'       => 'Are you sure?',
-            'text'        => "You won't be able to revert this!",
+            'text'        => "You will not be able to revert this!",
             'confirmText' => 'Yes, delete!',
             'method'      => 'delete',
             'params'      => $id,

@@ -14,6 +14,13 @@
                 </div>
 
                 <div class="mt-4">
+                    <x-jet-label for="guard_name" value="{{ __('Guard name') }}" />
+                    <x-jet-input id="guard_name" wire:model.defer="role.guard_name" class="block mt-1 w-full" type="text"
+                        name="guard_name" autocomplete disabled />
+                    <x-jet-input-error for="role.guard_name" class="mt-2" />
+                </div>
+
+                <div class="mt-4">
                     <x-jet-label value="{{ __('Permission') }}" />
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         @foreach ($list_permissions as $permission)
