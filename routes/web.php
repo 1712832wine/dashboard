@@ -11,7 +11,7 @@ use App\Http\Livewire\Posts\PostsComponent;
 
 use App\Http\Livewire\Pages\PagesComponent;
 use App\Http\Livewire\Menus\MenusComponent;
-use App\Http\Livewire\Product\ProductsComponent;
+use App\Http\Livewire\Products\ProductsComponent;
 use App\Http\Livewire\Albums\AlbumsComponent;
 
 /*

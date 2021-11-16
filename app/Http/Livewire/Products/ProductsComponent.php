@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire\Posts;
+namespace App\Http\Livewire\Products;
 
 use Spatie\Permission\Models\Permission;
 use Livewire\Component;
 
-class PostsComponent extends Component
+class ProductsComponent extends Component
 {
     public $permission_id, $isOpen = false;
     public Permission $permission;
@@ -69,9 +69,9 @@ class PostsComponent extends Component
     }
     // End confirm alert
     // ----------------------------------------
-
+    
     public function render()
     {
-        return view('livewire.posts.posts-component');
+        return view('livewire.products.products-component');
     }
 }
