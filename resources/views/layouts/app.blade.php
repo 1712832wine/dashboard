@@ -32,9 +32,6 @@
         @include('sweetalert::alert')
     </div>
     {{-- Script --}}
-    {{-- Sweet Alert --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    {{-- Script --}}
     <script>
         const SwalConfirm = (icon, title, html, confirmButtonText, method, params, callback) => {
             Swal.fire({

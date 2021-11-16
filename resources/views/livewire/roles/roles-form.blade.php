@@ -6,7 +6,7 @@
         </x-slot>
         <x-slot name="content">
             <div>
-                <div>
+                <div class="required">
                     <x-jet-label for="name" value="{{ __('Name') }}" />
                     <x-jet-input id="name" wire:model.defer="role.name" class="block mt-1 w-full" type="text" name="name"
                         :value="old('name')" autocomplete />

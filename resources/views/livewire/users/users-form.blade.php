@@ -7,7 +7,7 @@
         <x-slot name="content">
             <div>
                 @if (!in_array('name', $disabled))
-                    <div>
+                    <div class="required">
                         <x-jet-label for="name" value="{{ __('Name') }}" />
                         <x-jet-input id="name" wire:model.defer="user.name" class="block mt-1 w-full" type="text"
                             name="name" :value="old('name')" autocomplete />
@@ -16,7 +16,7 @@
                 @endif
 
                 @if (!in_array('email', $disabled))
-                    <div class="mt-4">
+                    <div class="mt-4 required">
                         <x-jet-label for="email" value="{{ __('Email') }}" />
                         <x-jet-input id="email" wire:model.defer="user.email" class="block mt-1 w-full" type="email"
                             name="email" :value="old('email')" autocomplete />
@@ -25,7 +25,7 @@
                 @endif
 
                 @if (!in_array('password', $disabled))
-                    <div class="mt-4">
+                    <div class="mt-4 required">
                         <x-jet-label for="password" value="{{ __('Password') }}" />
                         <x-jet-input id="password" wire:model.defer="password" class="block mt-1 w-full" type="text"
                             name="password" autocomplete />
@@ -34,7 +34,7 @@
                 @endif
 
                 @if (!in_array('password_confirmation', $disabled))
-                    <div class="mt-4">
+                    <div class="mt-4 required">
                         <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
                         <x-jet-input id="password_confirmation" wire:model.defer="password_confirmation"
                             class="block mt-1 w-full" type="password" name="password_confirmation" />
