@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Users;
 
 use App\Models\User;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
 use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -12,9 +14,25 @@ class UsersComponent extends Component
 {
     public $user_id, $isOpen = false;
     public User $user;
-    public $password = '';
-    public $password_confirmation = '';
+    public $password = '', $password_confirmation = '';
+    public $roles = [], $permissions = [], $permissions_in_roles = [];
     protected $listeners = ['openForm', 'confirmDelete', 'delete'];
+     // ----------------------------------------
+    // Updated
+    protected function updatedRoles()
+    {
+        // this function has not ferfected;
+        $this->permissions_in_roles = [];
+        foreach ($this->roles as $role_name)
+        {
+            $role = Role::where('name',$role_name)->first();
+            $permissions_in_role = $role->permissions->pluck('name');
+            $this->permissions_in_roles = array_unique(array_merge($this->permissions_in_roles,json_decode($permissions_in_role)));
+        }
+        $this->permissions = $this->permissions_in_roles;
+    }
+    // End updated
+    // ----------------------------------------
 
     // ----------------------------------------
     // Validate
@@ -35,6 +53,8 @@ class UsersComponent extends Component
     public function submit(){
         $this->validate();
         $this->user->password = Hash::make($this->password);
+        $this->user->syncPermissions($this->permissions);
+        $this->user->syncRoles($this->roles);
         $this->user->save();
         return redirect()->route('users')->with('success', 'User Created Successfully!');
     }
@@ -61,12 +81,6 @@ class UsersComponent extends Component
 
     // ----------------------------------------
     // Confirm Alert
-    
-    // End confirm alert
-    // ----------------------------------------
-
-    // ----------------------------------------
-    // Confirm Alert
     public function confirmDelete($id){
         $this->emit('swal:confirm', [
             'type'        => 'warning',
@@ -89,6 +103,10 @@ class UsersComponent extends Component
     public function render()
     {
         $list_permissions = Permission::all()->pluck('name');
-        return view('livewire.users.users-component',[ 'list_permissions' => $list_permissions]);
+        $list_roles = Role::all()->pluck('name');
+        return view('livewire.users.users-component',[
+            'list_permissions' => $list_permissions,
+            'list_roles' => $list_roles
+        ]);
     }
 }

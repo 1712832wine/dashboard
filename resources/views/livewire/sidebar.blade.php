@@ -21,5 +21,16 @@
             <x-sidebar-item route='roles'>{{ __('Role') }}</x-sidebar-item>
             <x-sidebar-item route='permissions'>{{ __('Permission') }}</x-sidebar-item>
         </x-sidebar-dropdown>
+
+        <x-sidebar-dropdown route="news">
+            <x-sidebar-item route='categories'>{{ __('Categories') }}</x-sidebar-item>
+            <x-sidebar-item route='tags'>{{ __('Tags') }}</x-sidebar-item>
+            <x-sidebar-item route='posts'>{{ __('Posts') }}</x-sidebar-item>
+        </x-sidebar-dropdown>
+
+        <x-sidebar-item route='pages'>{{ __('Pages') }}</x-sidebar-item>
+        <x-sidebar-item route='menus'>{{ __('Menus') }}</x-sidebar-item>
+        <x-sidebar-item route='products'>{{ __('Products') }}</x-sidebar-item>
+        <x-sidebar-item route='albums'>{{ __('Albums') }}</x-sidebar-item>
     </nav>
 </div>

@@ -4,6 +4,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Users\UsersComponent;
 use App\Http\Livewire\Roles\RolesComponent;
 use App\Http\Livewire\Permissions\PermissionsComponent;
+
+use App\Http\Livewire\Categories\CategoriesComponent;
+use App\Http\Livewire\Tags\TagsComponent;
+use App\Http\Livewire\Posts\PostsComponent;
+
+use App\Http\Livewire\Pages\PagesComponent;
+use App\Http\Livewire\Menus\MenusComponent;
+use App\Http\Livewire\Product\ProductsComponent;
+use App\Http\Livewire\Albums\AlbumsComponent;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +30,21 @@ Route::get('/', function () {
 });
 Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->group(function () {
     Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
-    Route::get('/authentication/users', UsersComponent::class)->name('users');
-    Route::get('/authentication/roles', RolesComponent::class)->name('roles');
-    Route::get('/authentication/permissions', PermissionsComponent::class)->name('permissions');
+    
+    Route::prefix('authentication')->group(function(){
+        Route::get('/users', UsersComponent::class)->name('users');
+        Route::get('/roles', RolesComponent::class)->name('roles');
+        Route::get('/permissions', PermissionsComponent::class)->name('permissions');
+    });
+
+    Route::prefix('news')->group(function(){
+        Route::get('/categories', CategoriesComponent::class)->name('categories');
+        Route::get('/tags', TagsComponent::class)->name('tags');
+        Route::get('/posts', PostsComponent::class)->name('posts');
+    });
+
+    Route::get('/pages', PagesComponent::class)->name('pages');
+    Route::get('/menus', MenusComponent::class)->name('menus');
+    Route::get('/products', ProductsComponent::class)->name('products');
+    Route::get('/albums', AlbumsComponent::class)->name('albums');
 });

@@ -37,11 +37,11 @@
                 <div class="mt-4">
                     <x-jet-label value="{{ __('Role') }}" />
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        @foreach ($list_permissions as $permission)
+                        @foreach ($list_roles as $role)
                             <div class="">
-                                <x-jet-checkbox :id="$permission" wire:model.defer="permissions" :value="$permission" />
+                                <x-jet-checkbox :id="$role" wire:model="roles" :value="$role" />
                                 <label class="text-sm text-gray-600"
-                                    for="{{ $permission }}">{{ $permission }}</label>
+                                    for="{{ $role }}">{{ $role }}</label>
                             </div>
                         @endforeach
                     </div>
@@ -53,6 +53,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         @foreach ($list_permissions as $permission)
                             <div class="">
+                                {{-- disabled="{{ in_array($permission, $permissions_in_roles) }}" --}}
                                 <x-jet-checkbox :id="$permission" wire:model.defer="permissions" :value="$permission" />
                                 <label class="text-sm text-gray-600"
                                     for="{{ $permission }}">{{ $permission }}</label>
