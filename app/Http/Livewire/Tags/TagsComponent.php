@@ -2,13 +2,14 @@
 
 namespace App\Http\Livewire\Tags;
 
-use Spatie\Permission\Models\Permission;
+use App\Models\Tag;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class TagsComponent extends Component
 {
-    public $permission_id, $isOpen = false;
-    public Permission $permission;
+    public $tag_id, $isOpen = false;
+    public Tag $tag;
     protected $listeners = ['openForm', 'confirmDelete', 'delete'];
 
     // -----------------------------------------
@@ -16,8 +17,8 @@ class TagsComponent extends Component
     protected function rules()
     {
         return [
-            'permission.name' => ['required', 'string', 'max:255'],
-            'permission.guard_name' => []
+            'tag.name' => ['required', 'string', 'max:255'],
+            'tag.slug' => []
         ];
     }
     // End validate
@@ -27,19 +28,22 @@ class TagsComponent extends Component
     // Form processing
     public function submit(){
         $this->validate();
-        $this->permission->save();
-        return redirect()->route('permissions')->with('success', 'Permission Created Successfully!');
+        if ($this->tag->slug == '') {
+            $this->tag->slug = Str::slug($this->tag->name,'-');
+        }
+        $this->tag->save();
+        return redirect()->route('tags')->with('success', 'Tag Created Successfully!');
     }
 
     public function openForm($id = null){
-        $this->permission_id = $id;
-        $this->permission = Permission::firstOrNew(['id' => $id,'guard_name' => 'web']);
+        $this->tag_id = $id;
+        $this->tag = Tag::firstOrNew(['id' => $id]);
         $this->isOpen = true;
     }
 
     public function resetData(){
-        $this->permission_id = null;
-        $this->permission = null;
+        $this->tag_id = null;
+        $this->tag = null;
     }
 
     public function closeForm(){
@@ -64,8 +68,8 @@ class TagsComponent extends Component
     }
 
     public function delete($id){
-        Permission::findOrFail($id)->delete();
-        return redirect()->route('permissions')->with('success', 'Permission Deleted Successfully!');
+        Tag::findOrFail($id)->delete();
+        return redirect()->route('tags')->with('success', 'Tag Deleted Successfully!');
     }
     // End confirm alert
     // ----------------------------------------
