@@ -2,79 +2,35 @@
     @csrf
     <x-jet-dialog-modal wire:model="isOpen">
         <x-slot name="title">
-            {{ __('Menu form') }}
+            {{ __('Category form') }}
         </x-slot>
         <x-slot name="content">
             <div>
-                <div>
+                <div class="required">
                     <x-jet-label for="name" value="{{ __('Name') }}" />
-                    <x-jet-input id="name" wire:model.defer="role.name" class="block mt-1 w-full" type="text" name="name"
-                        :value="old('name')" autocomplete />
-                    <x-jet-input-error for="role.name" class="mt-2" />
+                    <x-jet-input id="name" wire:model.defer="category.name" class="block mt-1 w-full" type="text"
+                        name="name" :value="old('name')" autocomplete />
+                    <x-jet-input-error for="category.name" class="mt-2" />
                 </div>
 
                 <div class="mt-4">
-                    <x-jet-label for="guard_name" value="{{ __('Guard name') }}" />
-                    <x-jet-input id="guard_name" wire:model.defer="role.guard_name" class="block mt-1 w-full" type="text"
-                        name="guard_name" autocomplete disabled />
-                    <x-jet-input-error for="role.guard_name" class="mt-2" />
+                    <x-jet-label for="slug" value="{{ __('Slug (URL)') }}" />
+                    <x-jet-input id="slug" wire:model.defer="category.slug" class="block mt-1 w-full" type="text"
+                        name="slug" autocomplete />
+                    <div class="text-gray-400 mt-1">Will be automatically generated from your name, if left empty.</div>
+                    <x-jet-input-error for="category.slug" class="mt-2" />
                 </div>
 
                 <div class="mt-4">
-                    <x-jet-label for="guard_name" value="{{ __('Guard name') }}" />
-                    <x-jet-input id="guard_name" wire:model.defer="role.guard_name" class="block mt-1 w-full" type="text"
-                        name="guard_name" autocomplete disabled />
-                    <x-jet-input-error for="role.guard_name" class="mt-2" />
-                </div>
-
-                <div class="mt-4">
-                    <x-jet-label for="guard_name" value="{{ __('Guard name') }}" />
-                    <x-jet-input id="guard_name" wire:model.defer="role.guard_name" class="block mt-1 w-full" type="text"
-                        name="guard_name" autocomplete disabled />
-                    <x-jet-input-error for="role.guard_name" class="mt-2" />
-                </div>
-
-                <div class="mt-4">
-                    <x-jet-label for="guard_name" value="{{ __('Guard name') }}" />
-                    <x-jet-input id="guard_name" wire:model.defer="role.guard_name" class="block mt-1 w-full"
-                        type="text" name="guard_name" autocomplete disabled />
-                    <x-jet-input-error for="role.guard_name" class="mt-2" />
-                </div>
-
-                <div class="mt-4">
-                    <x-jet-label for="guard_name" value="{{ __('Guard name') }}" />
-                    <x-jet-input id="guard_name" wire:model.defer="role.guard_name" class="block mt-1 w-full"
-                        type="text" name="guard_name" autocomplete disabled />
-                    <x-jet-input-error for="role.guard_name" class="mt-2" />
-                </div>
-
-                <div class="mt-4">
-                    <x-jet-label for="guard_name" value="{{ __('Guard name') }}" />
-                    <x-jet-input id="guard_name" wire:model.defer="role.guard_name" class="block mt-1 w-full"
-                        type="text" name="guard_name" autocomplete disabled />
-                    <x-jet-input-error for="role.guard_name" class="mt-2" />
-                </div>
-
-                <div class="mt-4">
-                    <x-jet-label for="guard_name" value="{{ __('Guard name') }}" />
-                    <x-jet-input id="guard_name" wire:model.defer="role.guard_name" class="block mt-1 w-full"
-                        type="text" name="guard_name" autocomplete disabled />
-                    <x-jet-input-error for="role.guard_name" class="mt-2" />
-                </div>
-
-                {{-- <div class="mt-4">
-                    <x-jet-label value="{{ __('Permission') }}" />
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        @foreach ($list_permissions as $permission)
-                            <div class="">
-                                <x-jet-checkbox :id="$permission" wire:model.defer="permissions" :value="$permission" />
-                                <label class="text-sm text-gray-600"
-                                    for="{{ $permission }}">{{ $permission }}</label>
-                            </div>
+                    <x-jet-label for="parent" value="{{ __('Parent') }}" />
+                    <x-select class="block mt-1 w-full" wire:model.defer="category.parent">
+                        <option selected value="-">Open this select menu</option>
+                        @foreach ($list_category as $item)
+                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
-                    </div>
-                    <x-jet-input-error for="permissions" class="mt-2" />
-                </div> --}}
+                    </x-select>
+                    <x-jet-input-error for="category.parent" class="mt-2" />
+                </div>
 
                 <div class="mt-4">
                     <x-jet-validation-errors />

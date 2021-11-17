@@ -2,13 +2,14 @@
 
 namespace App\Http\Livewire\Categories;
 
-use Spatie\Permission\Models\Permission;
+use App\Models\Category;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class CategoriesComponent extends Component
 {
-    public $permission_id, $isOpen = false;
-    public Permission $permission;
+    public $category_id, $isOpen = false;
+    public Category $category;
     protected $listeners = ['openForm', 'confirmDelete', 'delete'];
 
     // -----------------------------------------
@@ -16,8 +17,9 @@ class CategoriesComponent extends Component
     protected function rules()
     {
         return [
-            'permission.name' => ['required', 'string', 'max:255'],
-            'permission.guard_name' => []
+            'category.name' => ['required', 'string', 'max:255'],
+            'category.slug' => [],
+            'category.parent' => []
         ];
     }
     // End validate
@@ -27,19 +29,22 @@ class CategoriesComponent extends Component
     // Form processing
     public function submit(){
         $this->validate();
-        $this->permission->save();
-        return redirect()->route('permissions')->with('success', 'Permission Created Successfully!');
+        if ($this->category->slug == '') {
+            $this->category->slug = Str::slug($this->category->name,'-');
+        }
+        $this->category->save();
+        return redirect()->route('categories')->with('success', 'Category Created Successfully!');
     }
 
     public function openForm($id = null){
-        $this->permission_id = $id;
-        $this->permission = Permission::firstOrNew(['id' => $id,'guard_name' => 'web']);
+        $this->category_id = $id;
+        $this->category = Category::firstOrNew(['id' => $id]);
         $this->isOpen = true;
     }
 
     public function resetData(){
-        $this->permission_id = null;
-        $this->permission = null;
+        $this->category_id = null;
+        $this->category = null;
     }
 
     public function closeForm(){
@@ -64,14 +69,15 @@ class CategoriesComponent extends Component
     }
 
     public function delete($id){
-        Permission::findOrFail($id)->delete();
-        return redirect()->route('permissions')->with('success', 'Permission Deleted Successfully!');
+        Category::findOrFail($id)->delete();
+        return redirect()->route('categories')->with('success', 'Category Deleted Successfully!');
     }
     // End confirm alert
     // ----------------------------------------
 
     public function render()
     {
-        return view('livewire.categories.categories-component');
+        $list_category = Category::all();
+        return view('livewire.categories.categories-component',['list_category' => $list_category]);
     }
 }
