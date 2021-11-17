@@ -24,7 +24,7 @@
                 <div class="mt-4">
                     <x-jet-label for="parent" value="{{ __('Parent') }}" />
                     <x-select class="block mt-1 w-full" wire:model.defer="category.parent">
-                        <option selected value="-">Open this select menu</option>
+                        <option selected value="">Open this select menu</option>
                         @foreach ($list_category as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach

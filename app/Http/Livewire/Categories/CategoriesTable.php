@@ -40,7 +40,7 @@ class CategoriesTable extends LivewireDatatable
             ->filterable(),
 
             Column::callback(['parent'], function ($parent) {
-                if ($parent != '-') return Category::find($parent)->name;
+                if ($parent != '') return Category::find($parent)->name;
                 else return "none";
             })->label('Parent'),
 
