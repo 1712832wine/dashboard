@@ -16,20 +16,21 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->text('title');
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->date('date');
-            $table->text('content');
-            $table->string('image')->default('toan');
-            $table->string('category');
-            $table->string('tags');
-            $table->string('status');
+            $table->text('content')->nullable();
+            $table->string('image')->nullable();
+            $table->string('status')->nullable();
             $table->boolean('featured');
+            // optional
+            $table->text('blocks_content')->nullable();
             $table->string('template')->nullable();
-            $table->integer('count')->default(0);
-            $table->json('blocks_content')->nullable();
             $table->string('description')->nullable();
-            $table->integer('priority')->nullable();
+            $table->integer('priority')->default(0);
+            // end optional
+            $table->string('category_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
