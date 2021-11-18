@@ -22,6 +22,13 @@
                 </div>
 
                 <div class="mt-4">
+                    <x-jet-label for="date" value="{{ __('Date') }}" />
+                    <x-jet-input id="date" wire:model.defer="post.date" class="block mt-1 w-full" type="date" name="date"
+                        autocomplete />
+                    <x-jet-input-error for="post.date" class="mt-2" />
+                </div>
+
+                <div class="mt-4">
                     <x-jet-validation-errors />
                 </div>
             </div>

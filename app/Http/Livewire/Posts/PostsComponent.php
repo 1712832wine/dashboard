@@ -18,7 +18,8 @@ class PostsComponent extends Component
     {
         return [
             'post.title' => ['required', 'string', 'max:255'],
-            'post.slug' => []
+            'post.slug' => [],
+            'post.date' => []
         ];
     }
     // End validate
@@ -29,7 +30,7 @@ class PostsComponent extends Component
     public function submit(){
         $this->validate();
         if ($this->post->slug == '') {
-            $this->post->slug = Str::slug($this->post->name,'-');
+            $this->post->slug = Str::slug($this->post->title,'-');
         }
         $this->post->save();
         return redirect()->route('posts')->with('success', 'Post Created Successfully!');
