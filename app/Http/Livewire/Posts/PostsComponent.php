@@ -2,13 +2,14 @@
 
 namespace App\Http\Livewire\Posts;
 
-use Spatie\Permission\Models\Permission;
+use App\Models\Post;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class PostsComponent extends Component
 {
-    public $permission_id, $isOpen = false;
-    public Permission $permission;
+    public $post_id, $isOpen = false;
+    public Post $post;
     protected $listeners = ['openForm', 'confirmDelete', 'delete'];
 
     // -----------------------------------------
@@ -16,8 +17,8 @@ class PostsComponent extends Component
     protected function rules()
     {
         return [
-            'permission.name' => ['required', 'string', 'max:255'],
-            'permission.guard_name' => []
+            'post.title' => ['required', 'string', 'max:255'],
+            'post.slug' => []
         ];
     }
     // End validate
@@ -27,19 +28,22 @@ class PostsComponent extends Component
     // Form processing
     public function submit(){
         $this->validate();
-        $this->permission->save();
-        return redirect()->route('permissions')->with('success', 'Permission Created Successfully!');
+        if ($this->post->slug == '') {
+            $this->post->slug = Str::slug($this->post->name,'-');
+        }
+        $this->post->save();
+        return redirect()->route('posts')->with('success', 'Post Created Successfully!');
     }
 
     public function openForm($id = null){
-        $this->permission_id = $id;
-        $this->permission = Permission::firstOrNew(['id' => $id,'guard_name' => 'web']);
+        $this->post_id = $id;
+        $this->post = Post::firstOrNew(['id' => $id]);
         $this->isOpen = true;
     }
 
     public function resetData(){
-        $this->permission_id = null;
-        $this->permission = null;
+        $this->post_id = null;
+        $this->post = null;
     }
 
     public function closeForm(){
@@ -64,8 +68,8 @@ class PostsComponent extends Component
     }
 
     public function delete($id){
-        Permission::findOrFail($id)->delete();
-        return redirect()->route('permissions')->with('success', 'Permission Deleted Successfully!');
+        Post::findOrFail($id)->delete();
+        return redirect()->route('posts')->with('success', 'Post Deleted Successfully!');
     }
     // End confirm alert
     // ----------------------------------------

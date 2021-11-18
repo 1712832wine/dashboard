@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Posts;
 
-use Spatie\Permission\Models\Permission;
+use App\Models\Post;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\NumberColumn;
@@ -11,7 +11,7 @@ use Mediconesystems\LivewireDatatables\LabelColumn;
 
 class PostsTable extends LivewireDatatable
 {
-    public $model = Permission::class;
+    public $model = Post::class;
     public $exportable=true;
     public $complex = true;
 
@@ -29,8 +29,8 @@ class PostsTable extends LivewireDatatable
                 ->filterable()
                 ->sortBy('id'),
 
-            Column::name('name')
-                ->label('Name')
+            Column::name('title')
+                ->label('Title')
                 ->searchable()
                 ->filterable(),
 
