@@ -61,9 +61,9 @@
                 SwalConfirm(data.icon, data.title, data.text, data.confirmText, data.method, data.params,
                     data.callback)
             })
-
         })
     </script>
+
 
     @stack('modals')
 

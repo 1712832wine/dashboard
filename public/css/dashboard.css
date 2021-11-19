@@ -6,3 +6,29 @@
     content: ' *';
     color: #ff0000;
 }
+
+#editor h1 {
+    font-size: 2.5rem;
+}
+
+#editor h2 {
+    font-size: 2rem;
+}
+
+#editor h3 {
+    font-size: 1.75rem;
+}
+
+#editor ol {
+    padding-left: 2.75rem;
+}
+
+#editor ul {
+    padding-left: 2.75rem;
+}
+
+.ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_ne,
+.ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_se {
+    right: 0;
+    left: unset !important;
+}

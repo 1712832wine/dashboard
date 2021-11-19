@@ -6,7 +6,7 @@
         </x-slot>
         <x-slot name="content">
             <div>
-                <div>
+                <div class="required">
                     <x-jet-label for="title" value="{{ __('Title') }}" />
                     <x-jet-input id="title" wire:model.defer="post.title" class="block mt-1 w-full" type="text"
                         name="title" :value="old('title')" autocomplete />
@@ -29,6 +29,18 @@
                 </div>
 
                 <div class="mt-4">
+                    <x-jet-label for="content" value="{{ __('Content') }}" />
+                    <div wire:ignore class="block mt-1 w-full">
+                        <div id="toolbar-container">
+                        </div>
+                        <div id="editor">
+                        </div>
+                    </div>
+                    <x-jet-input-error for="post.content" class="mt-2" />
+                </div>
+
+
+                <div class="mt-4">
                     <x-jet-validation-errors />
                 </div>
             </div>
@@ -43,4 +55,35 @@
             </x-success-button>
         </x-slot>
     </x-jet-dialog-modal>
+    @push('modals')
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                DecoupledEditor
+                    .create(document.querySelector('#editor'))
+                    .then(editor => {
+                        // The toolbar needs to be explicitly appended.
+                        document.querySelector('#toolbar-container').appendChild(editor.ui.view.toolbar.element);
+                        window.editor = editor;
+                    })
+                    .catch(error => {
+                        console.error('There was a problem initializing the editor.', error);
+                    });
+
+            })
+        </script>
+    @endpush
+
+    <script>
+        document.addEventListener('livewire:load', function() {
+            window.addEventListener('getData', event => {
+                console.log(window.editor.getData())
+                @this.content = window.editor.getData();
+            })
+            window.addEventListener('setData', event => {
+                console.log("true");
+                window.editor.setData(event.detail.content);
+                console.log("true");
+            })
+        })
+    </script>
 </form>
