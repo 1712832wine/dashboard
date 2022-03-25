@@ -12,11 +12,12 @@ use Mediconesystems\LivewireDatatables\LabelColumn;
 class PermissionsTable extends LivewireDatatable
 {
     public $model = Permission::class;
-    public $exportable=true;
+    public $exportable = true;
     public $complex = true;
 
-    public function openForm($id){
-        $this->emit();
+    public function openForm($id)
+    {
+        // $this->emit();
     }
 
     public function columns()
@@ -35,8 +36,8 @@ class PermissionsTable extends LivewireDatatable
                 ->filterable(),
 
             Column::callback(['id'], function ($id) {
-                return view('components.actions-button', ['id'=>$id]);
-            })->label('Action'),  
+                return view('components.actions-button', ['id' => $id]);
+            })->label('Action'),
 
         ];
     }

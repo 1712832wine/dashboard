@@ -12,11 +12,12 @@ use Mediconesystems\LivewireDatatables\LabelColumn;
 class UsersTable extends LivewireDatatable
 {
     public $model = User::class;
-    public $exportable=true;
+    public $exportable = true;
     public $complex = true;
 
-    public function openForm($id){
-        $this->emit();
+    public function openForm($id)
+    {
+        // $this->emit();
     }
 
     public function columns()
@@ -44,11 +45,11 @@ class UsersTable extends LivewireDatatable
             Column::callback(['id', 'name'], function ($id, $name) {
                 $user = User::find($id);
                 return $user->roles->pluck('name');
-            })->label('Role'),   
+            })->label('Role'),
 
             Column::callback(['id'], function ($id) {
-                return view('components.actions-button', ['id'=>$id]);
-            })->label('Action'),  
+                return view('components.btn.btn-actions', ['id' => $id]);
+            })->label('Action'),
 
         ];
     }

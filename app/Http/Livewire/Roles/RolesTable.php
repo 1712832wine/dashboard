@@ -12,11 +12,12 @@ use Mediconesystems\LivewireDatatables\LabelColumn;
 class RolesTable extends LivewireDatatable
 {
     public $model = Role::class;
-    public $exportable=true;
+    public $exportable = true;
     public $complex = true;
 
-    public function openForm($id){
-        $this->emit();
+    public function openForm($id)
+    {
+        // $this->emit();
     }
 
     public function columns()
@@ -35,13 +36,13 @@ class RolesTable extends LivewireDatatable
                 ->filterable(),
 
             Column::callback(['id'], function ($id) {
-                    $role = Role::find($id);
-                    return $role->permissions->pluck('name');
-                })->label('Permissions'),  
+                $role = Role::find($id);
+                return $role->permissions->pluck('name');
+            })->label('Permissions'),
 
-            Column::callback(['id','name'], function ($id, $name) {
-                return view('components.actions-button', ['id'=>$id]);
-            })->label('Action'),  
+            Column::callback(['id', 'name'], function ($id, $name) {
+                return view('components.actions-button', ['id' => $id]);
+            })->label('Action'),
 
         ];
     }
