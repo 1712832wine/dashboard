@@ -26,18 +26,20 @@ use App\Http\Livewire\Albums\AlbumsComponent;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
-    
-    Route::prefix('authentication')->group(function(){
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::prefix('authentication')->group(function () {
         Route::get('/users', UsersComponent::class)->name('users');
         Route::get('/roles', RolesComponent::class)->name('roles');
         Route::get('/permissions', PermissionsComponent::class)->name('permissions');
     });
 
-    Route::prefix('news')->group(function(){
+    Route::prefix('news')->group(function () {
         Route::get('/categories', CategoriesComponent::class)->name('categories');
         Route::get('/tags', TagsComponent::class)->name('tags');
         Route::get('/posts', PostsComponent::class)->name('posts');

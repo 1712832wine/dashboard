@@ -30,9 +30,9 @@
             <x-jet-secondary-button wire:click="$set('isOpen', false)" wire:loading.attr="disabled">
                 {{ __('Close') }}
             </x-jet-secondary-button>
-            <x-success-button type="submit" wire:loading.attr="disabled">
+            <x-btn.btn-success type="submit" wire:loading.attr="disabled">
                 {{ __('Submit') }}
-            </x-success-button>
+            </x-btn.btn-success>
         </x-slot>
     </x-jet-dialog-modal>
 </form>

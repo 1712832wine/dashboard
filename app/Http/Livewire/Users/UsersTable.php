@@ -6,8 +6,6 @@ use App\Models\User;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\NumberColumn;
-use Mediconesystems\LivewireDatatables\DateColumn;
-use Mediconesystems\LivewireDatatables\LabelColumn;
 
 class UsersTable extends LivewireDatatable
 {
@@ -15,10 +13,6 @@ class UsersTable extends LivewireDatatable
     public $exportable = true;
     public $complex = true;
 
-    public function openForm($id)
-    {
-        // $this->emit();
-    }
 
     public function columns()
     {

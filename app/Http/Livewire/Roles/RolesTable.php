@@ -6,8 +6,6 @@ use Spatie\Permission\Models\Role;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\NumberColumn;
-use Mediconesystems\LivewireDatatables\DateColumn;
-use Mediconesystems\LivewireDatatables\LabelColumn;
 
 class RolesTable extends LivewireDatatable
 {
@@ -15,10 +13,6 @@ class RolesTable extends LivewireDatatable
     public $exportable = true;
     public $complex = true;
 
-    public function openForm($id)
-    {
-        // $this->emit();
-    }
 
     public function columns()
     {
@@ -41,7 +35,7 @@ class RolesTable extends LivewireDatatable
             })->label('Permissions'),
 
             Column::callback(['id', 'name'], function ($id, $name) {
-                return view('components.actions-button', ['id' => $id]);
+                return view('components.btn.btn-actions', ['id' => $id]);
             })->label('Action'),
 
         ];

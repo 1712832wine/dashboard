@@ -12,12 +12,8 @@ use Mediconesystems\LivewireDatatables\LabelColumn;
 class CategoriesTable extends LivewireDatatable
 {
     public $model = Category::class;
-    public $exportable=true;
+    public $exportable = true;
     public $complex = true;
-
-    public function openForm($id){
-        $this->emit();
-    }
 
     public function columns()
     {
@@ -35,18 +31,18 @@ class CategoriesTable extends LivewireDatatable
                 ->filterable(),
 
             Column::name('slug')
-            ->label('Slug')
-            ->searchable()
-            ->filterable(),
+                ->label('Slug')
+                ->searchable()
+                ->filterable(),
 
             Column::callback(['parent'], function ($parent) {
                 if ($parent != '') return Category::find($parent)->name;
                 else return "none";
             })->label('Parent'),
 
-            Column::callback(['id','name'], function ($id, $name) {
-                return view('components.actions-button', ['id'=>$id]);
-            })->label('Action'),  
+            Column::callback(['id', 'name'], function ($id, $name) {
+                return view('components.actions-button', ['id' => $id]);
+            })->label('Action'),
 
         ];
     }
