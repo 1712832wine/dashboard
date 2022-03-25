@@ -5,4 +5,16 @@
     </div>
     @livewire('posts.posts-table')
     @include('livewire.posts.posts-form')
+    <script>
+        
+        document.addEventListener('livewire:load', function() {
+            window.addEventListener('getData', () => {
+                console.log(window.editor.getData())
+                @this.content = window.editor.getData();
+            })
+            window.addEventListener('setData', event => {
+                window.editor.setData(event.detail.content);
+            })
+        })
+    </script>`
 </div>

@@ -29,38 +29,42 @@ class PostsComponent extends Component
 
     // -----------------------------------------
     // Form processing
-    public function syncContent($value){
-        // return dd('value:',$value);
+    public function syncContent($value)
+    {
         $this->post->content = $value;
-        return dd($value,$this->post->content);
     }
-    
-    public function submit(){
+
+    public function submit()
+    {
         $this->dispatchBrowserEvent('getData');
-        // return dd($this->content);
         $this->post->content = $this->content;
-        $this->validate();
+        return dd($this->content);
         if ($this->post->slug == '') {
-            $this->post->slug = Str::slug($this->post->title,'-');
+            $this->post->slug = Str::slug($this->post->title, '-');
         }
+        // return dd($this->post->content);
+        $this->validate();
         $this->post->save();
         return redirect()->route('posts')->with('success', 'Post Created Successfully!');
     }
 
-    public function openForm($id = null){
+    public function openForm($id = null)
+    {
         $this->post_id = $id;
         $this->post = Post::firstOrNew(['id' => $id]);
         if ($this->post->data == null) $this->post->data = '';
-        $this->dispatchBrowserEvent('setData',['content' => $this->post->content]);
+        $this->dispatchBrowserEvent('setData', ['content' => $this->post->content]);
         $this->isOpen = true;
     }
 
-    public function resetData(){
+    public function resetData()
+    {
         $this->post_id = null;
         $this->post = null;
     }
 
-    public function closeForm(){
+    public function closeForm()
+    {
         $this->resetData();
         $this->isOpen = false;
     }
@@ -69,7 +73,8 @@ class PostsComponent extends Component
 
     // ----------------------------------------
     // Confirm Alert
-    public function confirmDelete($id){
+    public function confirmDelete($id)
+    {
         $this->emit('swal:confirm', [
             'type'        => 'warning',
             'title'       => 'Are you sure?',
@@ -81,7 +86,8 @@ class PostsComponent extends Component
         ]);
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         Post::findOrFail($id)->delete();
         return redirect()->route('posts')->with('success', 'Post Deleted Successfully!');
     }

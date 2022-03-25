@@ -68,22 +68,9 @@
                     .catch(error => {
                         console.error('There was a problem initializing the editor.', error);
                     });
-
             })
         </script>
     @endpush
 
-    <script>
-        document.addEventListener('livewire:load', function() {
-            window.addEventListener('getData', event => {
-                console.log(window.editor.getData())
-                @this.content = window.editor.getData();
-            })
-            window.addEventListener('setData', event => {
-                console.log("true");
-                window.editor.setData(event.detail.content);
-                console.log("true");
-            })
-        })
-    </script>
+    
 </form>
